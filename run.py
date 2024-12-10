@@ -12,8 +12,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('train_stop_survey')
 
-business = SHEET.worksheet("business")
+business = SHEET.worksheet('business')
 
-data_business = business.get_all_values()
+business_data = business.get_all_values()
 
-print(data)
+print(business_data)
