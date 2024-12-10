@@ -18,32 +18,26 @@ def get_opening_survey_data():
     """
     while True:
         print("\nThank you for taking part in our Train Stop Survey.\n")
-        print("You will now be asked a few quetsions about your experiance.\n")
-        print("Did you use the train today for business or lesiure?")
+        print("You will now be asked a few questions about your experience.\n")
+        print("Did you use the train today for business or leisure?")
 
-        opening_data_str = input("Please answer business or lesiure here: ")
-
-        opening_data = opening_data_str.split(",")
+        opening_data = input("Please answer business or leisure here: ")
 
         if validate_opening_question(opening_data):
-            print("Your answers are valid")
+            print("Your answer are valid, please move onto the next section.")
             break
 
     return opening_data
 
-
 def validate_opening_question(answer):
+    print(answer)
     """
-    Check to see if opening question is correct, either business or lesuire.
+    Check to see if opening question is correct, either business or leisure.
     """
-    try:
-        if not answer == "business":
-            raise ValueError("Please choose either, business or lesuire") 
-    except ValueError as e:
-        print(f"Invalide answer: {e} and try again!")
-        return False
-    
-    return True
+    if answer not "business" or not "leisure":
+        print("Please choose either, business or leisure") 
+    else:
+        return True
 
 #def get_survey_data():
 #    """
@@ -51,13 +45,13 @@ def validate_opening_question(answer):
 #    """
 #    while True:
 #        print("\nThank you for taking part in our Train Stop Survey.\n")
-#        print("You will now be asked a few quetsions about your experiance.\n")
+#        print("You will now be asked a few questions about your experience.\n")
 #        print("Please answer the following questions giving them a rating from 1-5.")
 #        print("1 being very dissatisfied, 3 neither and 5 being satisfied.\n")
 #        print("Please separate your answers with a commas. Example: 4,3,1,2,5,5\n")
 
 #        print("Question 1: Overall satisfaction of the train.")
-#        print("Question 2: Punctuality and relability of service.")
+#        print("Question 2: Punctuality and reliability of service.")
 #        print("Question 3: Value for money.")
 #        print("Question 4: Level of crowding on the train.")
 #        print("Question 5: Comfort of seats.")
@@ -72,7 +66,6 @@ def validate_opening_question(answer):
     
 #    return survey_data
 
-
 #def validate_data(values):
 #    """
 #    Check to see if questionnaire data is correct and converted to an int, raise error if string 
@@ -86,7 +79,6 @@ def validate_opening_question(answer):
 #        print(f"Invalid data: {e}, please try again.\n")
 #        return False
 #    return True
-
 
 
 get_opening_survey_data()
