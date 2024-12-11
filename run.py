@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -72,6 +73,33 @@ def update_survey_data(data):
     print("Survey worksheet has now been updated.\n")
 
 
-data = get_survey_data()    
-survey_data = [int(num) for num in data]
-update_survey_data(survey_data)
+
+
+def calculate_customer_results(survey_column):
+    """
+    Calculate results and show customer total satisfaction.
+    """
+    print("Updating results\n")
+    results = SHEET.worksheet("survey").get_all_values()
+    results_row = results[-1]
+    
+    total_result = []
+    total = 0
+    for num in results_row:
+        total_survey = survey_data
+        totals = total_survey + total
+        total_result.append(totals)
+    return(total_result)
+
+
+def main():
+    """
+    Main function call
+    """
+    data = get_survey_data()    
+    survey_data = [int(num) for num in data]
+    update_survey_data(survey_data)
+    calculate_customer_results(survey_data)
+
+print("Wecome to Train Stop Survey")
+main()
