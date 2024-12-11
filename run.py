@@ -41,7 +41,7 @@ def get_survey_data():
         if validate_survey(survey_data):
             print("The answers you provided are valid, thank you for your feedback.")
             break
-        
+
     return survey_data
 
 
@@ -54,11 +54,24 @@ def validate_survey(answers):
         [int(answer) for answer in answers]
         if len(answers) != 6:
             raise ValueError(f"We require all 6 questions to be answered, you answered {len(answers)}")
+#        if answers <= 0 or answers >= 6:
+#            raise ValueError(f"Please make sure your answers are between 1-5.")
     except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")    
+        print(f"Invalid data: {e}, please try again.\n")
         return False
+    
     return True
 
+def update_survey_data(data):
+    """
+    Update survey work sheet.
+    """
+    print("Updating survey worksheet...\n")
+    survey_worksheet = SHEET.worksheet("survey")
+    survey_worksheet.append_row(data)
+    print("Survey worksheet has now been updated.\n")
 
-get_survey_data()    
 
+data = get_survey_data()    
+survey_data = [int(num) for num in data]
+update_survey_data(survey_data)
